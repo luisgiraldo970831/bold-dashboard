@@ -1,0 +1,45 @@
+:root {
+    /* Paleta requerida */
+    --color-primary:  #121E6C;
+    --color-accent:   #EE424E;
+    --color-text:     #606060;
+    --color-gray-100: #F3F3F3;
+    --color-gray-50:  #F6F4F9;
+  
+    /* Derivados útiles */
+    --primary-600: #0F1A5F;
+    --accent-600:  #CF2C39;
+    --accent-50:   #FFECEE;
+  
+    /* Estados */
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --error:   #dc2626;
+  
+    /* Tipografía responsiva opcional */
+    --font-s:   clamp(12px, 1.5vw, 14px);
+    --font-m:   clamp(14px, 1.6vw, 16px);
+    --font-l:   clamp(16px, 1.8vw, 18px);
+    --font-xl:  clamp(18px, 2.2vw, 22px);
+    --font-2xl: clamp(22px, 3vw, 28px);
+  
+    /* Spacing / Radius / Sombra / Z / Motion */
+    --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+    --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+  
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+  
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 24px rgba(0,0,0,0.12);
+  
+    --z-header: 10;
+    --z-tooltip: 30;
+    --z-drawer: 40;
+    --z-overlay: 50;
+  
+    --easing: cubic-bezier(.2,.8,.2,1);
+  }
+  
