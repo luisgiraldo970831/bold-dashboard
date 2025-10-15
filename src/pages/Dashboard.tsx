@@ -22,6 +22,7 @@ export default function Dashboard() {
   const toggleFilters = () => {
     setIsFiltersOpen(!isFiltersOpen)
   }
+  
   return (
     <div className="min-h-screen w-full flex flex-col">
       <div className="w-full py-2 sm:py-4 px-0">
