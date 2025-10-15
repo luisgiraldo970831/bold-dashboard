@@ -50,12 +50,19 @@ const loadFiltersFromStorage = (): FilterState => {
       const parsed = JSON.parse(saved);
       // Validar que los datos sean válidos
       if (parsed && typeof parsed === 'object') {
-        return {
+        const loadedState = {
           ...initialFilters,
           ...parsed,
           showFilters: false, // Siempre empezar con el modal cerrado
           tooltipOpen: false, // Siempre empezar con el tooltip cerrado
         };
+        
+        // Asegurar que el dateRange esté calculado correctamente
+        if (!loadedState.dateRange.start || !loadedState.dateRange.end) {
+          loadedState.dateRange = getInitialDateRange(loadedState.range);
+        }
+        
+        return loadedState;
       }
     }
   } catch (error) {
@@ -75,13 +82,37 @@ const saveFiltersToStorage = (filters: FilterState) => {
   }
 };
 
+// Función para calcular el rango de fechas inicial
+const getInitialDateRange = (range: RangeKey = 'month') => {
+  const now = new Date();
+  let startDate: Date;
+  const endDate: Date = now;
+  
+  switch (range) {
+    case 'today':
+      startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      break;
+    case 'week':
+      startDate = new Date(now);
+      startDate.setDate(now.getDate() - 7);
+      break;
+    case 'month':
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+      break;
+    default:
+      startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+  
+  return {
+    start: startDate.toISOString(),
+    end: endDate.toISOString(),
+  };
+};
+
 const initialFilters: FilterState = {
   search: '',
   range: 'month',
-  dateRange: {
-    start: '',
-    end: '',
-  },
+  dateRange: getInitialDateRange('month'),
   status: '',
   category: '',
   amountRange: {
