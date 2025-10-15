@@ -1,7 +1,7 @@
 import { useFilters, type RangeKey } from '@/stores/useFilters'
 
 const RANGES: { key: RangeKey; label: string }[] = [
-  { key: 'today', label: 'Alejandra' },
+  { key: 'today', label: 'Hoy' },
   { key: 'week', label: 'Esta semana' },
   { key: 'month', label: 'Mes' }
 ]
