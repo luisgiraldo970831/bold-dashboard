@@ -31,9 +31,9 @@ export default function FiltersPanel({ isOpen, onClose }: FiltersPanelProps) {
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-start justify-end pt-20 pr-4">
+    <div className="fixed inset-0 z-[9999] flex items-start justify-center sm:justify-end pt-16 sm:pt-20 px-4 sm:pr-4">
       <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
-      <div className="relative z-10 bg-white rounded-lg shadow-lg border border-gray-200 w-80 p-4">
+      <div className="relative z-10 bg-white rounded-lg shadow-lg border border-gray-200 w-full max-w-sm sm:w-80 p-4">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Filtrar</h3>
           <button

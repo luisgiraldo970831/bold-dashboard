@@ -65,7 +65,7 @@ export default function TransactionsTable({
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
       {/* Header de la tabla */}
-      <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
+      <div className="px-3 sm:px-6 py-4 border-b border-gray-200 bg-gray-50">
         <h3 className="text-lg font-semibold text-gray-900">
           Transacciones ({transactions.length})
         </h3>
@@ -76,19 +76,19 @@ export default function TransactionsTable({
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Transacción
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Fecha y hora
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Método de pago
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 ID transacción Bold
               </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Monto
               </th>
             </tr>
@@ -97,7 +97,7 @@ export default function TransactionsTable({
             {transactions.map((transaction) => (
               <tr key={transaction.id} className="hover:bg-gray-50">
                 {/* Transacción */}
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center gap-2">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(transaction.status)}`}>
                       {getStatusText(transaction.status)}
@@ -109,7 +109,7 @@ export default function TransactionsTable({
                 </td>
 
                 {/* Fecha y hora */}
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-900">
                     {formatDate(transaction.createdAt)}
                   </div>
@@ -119,7 +119,7 @@ export default function TransactionsTable({
                 </td>
 
                 {/* Método de pago */}
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center gap-2">
                     <div className="text-sm text-gray-900">
                       {formatPaymentMethod(transaction.paymentMethod)}
@@ -133,14 +133,14 @@ export default function TransactionsTable({
                 </td>
 
                 {/* ID transacción Bold */}
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-mono text-gray-900">
                     {transaction.id}
                   </div>
                 </td>
 
                 {/* Monto */}
-                <td className="px-6 py-4 whitespace-nowrap text-right">
+                <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-right">
                   <div className="text-sm font-semibold text-gray-900">
                     {formatCurrency(transaction.amount)}
                   </div>
@@ -162,7 +162,7 @@ export default function TransactionsTable({
       </div>
 
       {/* Footer con información adicional */}
-      <div className="px-6 py-3 bg-gray-50 border-t border-gray-200">
+      <div className="px-3 sm:px-6 py-3 bg-gray-50 border-t border-gray-200">
         <div className="flex items-center justify-between text-sm text-gray-500">
           <span>
             Mostrando {transactions.length} transacción{transactions.length !== 1 ? 'es' : ''}

@@ -23,13 +23,13 @@ export default function Dashboard() {
     setIsFiltersOpen(!isFiltersOpen)
   }
   return (
-    <div className="min-h-screen w-full flex flex-col ">
-      <div className="w-full py-4 px-0">
+    <div className="min-h-screen w-full flex flex-col">
+      <div className="w-full py-2 sm:py-4 px-0">
         <div className="w-full px-0 py-0">
         <img 
           src={bannerBold} 
           alt="Bold" 
-          className="w-full h-full object-fill border-0"
+          className="w-full h-auto object-contain border-0"
         />
         </div>
       </div>
@@ -38,26 +38,28 @@ export default function Dashboard() {
         <div className="mx-auto max-w-7xl px-2 sm:px-4 py-2 sm:py-3">
           {/* Mobile Layout */}
           <div className="flex flex-col gap-3 sm:hidden">
-            <div className="flex items-center justify-between">
-                <div className="w-64">
+            <div className="flex items-start justify-between gap-2">
+                <div className="flex-1 min-w-0">
                   <div className="bg-gradient-to-r from-primary via-purple-600 to-accent rounded-t-lg p-2 text-white">
                     <div className="flex items-center gap-2">
                       <h2 className="text-xs font-semibold">Total de ventas</h2>
-                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
                   </div>
                   <div className="bg-white rounded-b-lg p-2 border border-gray-200">
-                    <p className="text-sm font-bold text-primary">
+                    <p className="text-sm font-bold text-primary truncate">
                       {isLoading ? '...' : formatCurrency(stats.totalAmount)}
                     </p>
                     <p className="text-gray-500 text-xs">{stats.totalTransactions} transacciones</p>
                   </div>
                 </div>
-              <FiltersButton isOpen={isFiltersOpen} onToggle={toggleFilters} />
+              <div className="flex-shrink-0">
+                <FiltersButton isOpen={isFiltersOpen} onToggle={toggleFilters} />
+              </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center px-2">
               <RangeBar />
             </div>
           </div>
@@ -91,7 +93,7 @@ export default function Dashboard() {
       </header>
 
           <main className="flex-1 bg-gray-50">
-            <div className="mx-auto max-w-7xl px-4 py-4">
+            <div className="mx-auto max-w-7xl px-2 sm:px-4 py-4">
 
               <div className="bg-gradient-to-r from-primary via-purple-600 to-accent rounded-lg p-4 text-white mb-4">
                 <div className="flex items-center justify-between mb-4">
