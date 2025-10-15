@@ -1,5 +1,9 @@
 # Bold Dashboard - Ejercicio Técnico
 
+## 🌐 Demo en Vivo
+
+**🚀 [Ver aplicación desplegada en Vercel](https://bold-dashboard-sigma.vercel.app/)**
+
 ## 📋 Descripción del Proyecto
 
 Este es un dashboard de transacciones desarrollado como ejercicio técnico para Bold. La aplicación permite visualizar el total de ventas diarias, filtrar transacciones por diferentes rangos de tiempo y aplicar filtros específicos mediante un modal interactivo.
