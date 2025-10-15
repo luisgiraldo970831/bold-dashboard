@@ -1,18 +1,19 @@
-import { useFilters, type RangeKey } from '@/stores/useFilters'
+import { useFilters } from '@/stores/FiltersContext'
+import type { RangeKey } from '@/stores/FiltersContext'
 
 const RANGES: { key: RangeKey; label: string }[] = [
   { key: 'today', label: 'Hoy' },
   { key: 'week', label: 'Esta semana' },
-  { key: 'month', label: 'Mes' }
+  { key: 'month', label: 'Septiembre' }
 ]
 
 export default function RangeBar() {
-  const { range, setRange } = useFilters()
+  const { state, setRange } = useFilters()
 
   return (
     <div className="inline-flex rounded-md bg-gray-100 p-1">
       {RANGES.map(({ key, label }) => {
-        const active = range === key
+        const active = state.range === key
         return (
           <button
             key={key}

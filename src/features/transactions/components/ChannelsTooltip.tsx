@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useFilters } from '@/stores/useFilters'
+import { useFilters } from '@/stores/FiltersContext'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
 const ALL = ['web', 'pos', 'app'] as const
@@ -15,30 +15,30 @@ function InfoIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function ChannelsTooltip() {
-  const { tooltipOpen: open, setTooltipOpen: setOpen, channels, setChannels } = useFilters()
+  const { state, setTooltipOpen: setOpen, setChannels } = useFilters()
 
-  const ref = useOnClickOutside<HTMLDivElement>(open, () => setOpen(false))
+  const ref = useOnClickOutside<HTMLDivElement>(state.tooltipOpen, () => setOpen(false))
   const setOrToggle = (v: string) => {
-    const set = new Set(channels)
+    const set = new Set(state.channels)
     if (set.has(v)) set.delete(v)
     else set.add(v)
-    setChannels(Array.from(set) as any)
+    setChannels(Array.from(set))
   }
-  const label = useMemo(() => (channels.length ? `Canales (${channels.length})` : 'Canales'), [channels])
+  const label = useMemo(() => (state.channels.length ? `Canales (${state.channels.length})` : 'Canales'), [state.channels])
 
   return (
     <div className="relative" ref={ref}>
       <button
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen(!state.tooltipOpen)}
         className="inline-flex items-center gap-2 rounded-md border border-gray-100 bg-white px-3 py-2 text-sm shadow-sm hover:bg-gray-50"
         aria-haspopup="dialog"
-        aria-expanded={open}
+        aria-expanded={state.tooltipOpen}
       >
         <InfoIcon className="text-primary" />
         <span>{label}</span>
       </button>
 
-      {open && (
+      {state.tooltipOpen && (
         <div
           role="dialog"
           aria-label="Filtrar por canales"
@@ -52,7 +52,7 @@ export default function ChannelsTooltip() {
                 <input
                   type="checkbox"
                   className="accent-[var(--color-accent)]"
-                  checked={channels.includes(c)}
+                  checked={state.channels.includes(c)}
                   onChange={() => setOrToggle(c)}
                 />
                 <span className="capitalize">{c}</span>

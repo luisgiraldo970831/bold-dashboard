@@ -1,24 +1,24 @@
-import { useFilters } from '@/stores/useFilters'
+import { useFilters } from '@/stores/FiltersContext'
 
 export default function FilterChips() {
-  const { channels, setChannels } = useFilters()
+  const { state, setChannels } = useFilters()
 
   const removeChannel = (channel: string) => {
-    setChannels(channels.filter(c => c !== channel))
+    setChannels(state.channels.filter(c => c !== channel))
   }
 
   const clearAll = () => {
     setChannels([])
   }
 
-  if (channels.length === 0) {
+  if (state.channels.length === 0) {
     return null
   }
 
   return (
     <div className="flex items-center gap-2 mt-4">
       <span className="text-sm text-white/80">Filtros activos:</span>
-      {channels.map((channel) => (
+      {state.channels.map((channel) => (
         <div
           key={channel}
           className="inline-flex items-center gap-1 bg-white/20 text-white px-2 py-1 rounded-full text-xs font-medium"

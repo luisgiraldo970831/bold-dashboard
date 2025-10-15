@@ -1,9 +1,33 @@
+import { useFilters } from '@/stores/FiltersContext'
+import { useState } from 'react'
+
 interface FiltersPanelProps {
   isOpen: boolean
   onClose: () => void
 }
 
 export default function FiltersPanel({ isOpen, onClose }: FiltersPanelProps) {
+  const { state, setSalesTypes, toggleFilters } = useFilters()
+  const [localSalesTypes, setLocalSalesTypes] = useState<string[]>(state.salesTypes)
+
+  const handleCheckboxChange = (salesType: string, checked: boolean) => {
+    if (checked) {
+      setLocalSalesTypes(prev => [...prev, salesType])
+    } else {
+      setLocalSalesTypes(prev => prev.filter(type => type !== salesType))
+    }
+  }
+
+  const handleApplyFilters = () => {
+    setSalesTypes(localSalesTypes)
+    toggleFilters() // Cerrar el modal
+  }
+
+  const handleClearAll = () => {
+    setLocalSalesTypes([])
+    setSalesTypes([])
+  }
+
   if (!isOpen) return null
 
   return (
@@ -26,6 +50,8 @@ export default function FiltersPanel({ isOpen, onClose }: FiltersPanelProps) {
           <label className="flex items-center gap-3">
             <input
               type="checkbox"
+              checked={localSalesTypes.includes('TERMINAL')}
+              onChange={(e) => handleCheckboxChange('TERMINAL', e.target.checked)}
               className="w-4 h-4 text-accent border-gray-300 rounded focus:ring-accent"
             />
             <span className="text-sm text-gray-700">Cobro con datáfono</span>
@@ -34,6 +60,8 @@ export default function FiltersPanel({ isOpen, onClose }: FiltersPanelProps) {
           <label className="flex items-center gap-3">
             <input
               type="checkbox"
+              checked={localSalesTypes.includes('PAYMENT_LINK')}
+              onChange={(e) => handleCheckboxChange('PAYMENT_LINK', e.target.checked)}
               className="w-4 h-4 text-accent border-gray-300 rounded focus:ring-accent"
             />
             <span className="text-sm text-gray-700">Cobro con link de pago</span>
@@ -42,15 +70,28 @@ export default function FiltersPanel({ isOpen, onClose }: FiltersPanelProps) {
           <label className="flex items-center gap-3">
             <input
               type="checkbox"
+              checked={localSalesTypes.length === 0}
+              onChange={(e) => e.target.checked ? handleClearAll() : null}
               className="w-4 h-4 text-accent border-gray-300 rounded focus:ring-accent"
             />
             <span className="text-sm text-gray-700">Ver todos</span>
           </label>
         </div>
         
-        <button className="w-full mt-6 bg-accent text-white py-2 px-4 rounded-lg font-medium hover:bg-accent-600 transition-colors">
-          Aplicar
-        </button>
+        <div className="flex gap-2 mt-6">
+          <button 
+            onClick={handleClearAll}
+            className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+          >
+            Limpiar
+          </button>
+          <button 
+            onClick={handleApplyFilters}
+            className="flex-1 bg-accent text-white py-2 px-4 rounded-lg font-medium hover:bg-accent-600 transition-colors"
+          >
+            Aplicar
+          </button>
+        </div>
       </div>
     </div>
   )
