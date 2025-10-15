@@ -4,17 +4,21 @@ export default {
   content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Montserrat', 'system-ui', 'sans-serif'],
+        montserrat: ['Montserrat', 'system-ui', 'sans-serif']
+      },
       colors: {
         primary: 'var(--color-primary)',
         accent: 'var(--color-accent)',
         text: 'var(--color-text)',
         gray: {
-          50:  'var(--color-gray-50)',
+          50: 'var(--color-gray-50)',
           100: 'var(--color-gray-100)'
         },
         success: 'var(--success)',
         warning: 'var(--warning)',
-        error:   'var(--error)'
+        error: 'var(--error)'
       },
       borderRadius: {
         sm: 'var(--radius-sm)',
@@ -28,9 +32,6 @@ export default {
       },
       transitionTimingFunction: {
         bold: 'var(--easing)'
-      },
-      fontFamily: {
-        montserrat: ['Montserrat', 'system-ui', 'sans-serif']
       }
     }
   },

@@ -13,8 +13,8 @@ export default function SearchBox() {
     <input
       value={q}
       onChange={onChange}
-      className="w-full rounded-md border border-gray-100 bg-white px-3 py-2 shadow-sm outline-none focus:ring-2 focus:ring-accent"
-      placeholder="Buscar por cualquier campo…"
+      className="w-full rounded-md border-0 bg-white px-3 py-2 shadow-sm outline-none focus:ring-2 focus:ring-white/50 text-gray-900 placeholder-gray-500"
+      placeholder="Buscar"
       aria-label="Buscar"
     />
   )

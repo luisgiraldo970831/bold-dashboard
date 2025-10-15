@@ -1,15 +1,21 @@
-import { useFilters } from '@/stores/useFilters'
+interface FiltersButtonProps {
+  isOpen: boolean
+  onToggle: () => void
+}
 
-export default function FiltersButton() {
-  const { showFilters: show, toggleFilters: toggle } = useFilters()
+export default function FiltersButton({ isOpen, onToggle }: FiltersButtonProps) {
+  const handleClick = () => {
+    onToggle()
+  }
+  
   return (
     <button
-      onClick={toggle}
+      onClick={handleClick}
       className="px-3 py-2 rounded-md bg-primary text-white text-sm shadow-sm transition-colors duration-fast ease-bold hover:bg-[color:var(--primary-600)]"
-      aria-expanded={show}
+      aria-expanded={isOpen}
       aria-controls="filters-panel"
     >
-      {show ? 'Ocultar filtros' : 'Filtrar'}
+      {isOpen ? 'Ocultar filtros' : 'Filtrar'}
     </button>
   )
 }

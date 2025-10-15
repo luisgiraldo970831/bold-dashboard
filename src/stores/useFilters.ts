@@ -36,6 +36,8 @@ export const useFilters = () => {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [showFilters, setShowFilters] = useState(false);
   const [q, setQ] = useState('');
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [channels, setChannels] = useState<string[]>([]);
 
   const updateFilter = useCallback(<K extends keyof FilterState>(
     key: K,
@@ -79,6 +81,14 @@ export const useFilters = () => {
     setQ(query);
   }, []);
 
+  const setTooltipOpenState = useCallback((open: boolean) => {
+    setTooltipOpen(open);
+  }, []);
+
+  const setChannelsState = useCallback((channels: string[]) => {
+    setChannels(channels);
+  }, []);
+
   const clearFilters = useCallback(() => {
     setFilters(initialFilters);
   }, []);
@@ -103,6 +113,10 @@ export const useFilters = () => {
     toggleFilters,
     q,
     setQ: setSearchQuery,
+    tooltipOpen,
+    setTooltipOpen: setTooltipOpenState,
+    channels,
+    setChannels: setChannelsState,
     updateFilter,
     updateSearch,
     updateDateRange,

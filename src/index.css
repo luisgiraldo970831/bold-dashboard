@@ -1,17 +1,18 @@
-/* Importa tokens ANTES de @tailwind para cumplir con las reglas CSS */
 @import './styles/tokens.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  height: 100%;
-}
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
 
-body {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  background: var(--color-gray-50);
-  color: var(--color-text);
-  font-size: var(--font-m);
+  body {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    background: var(--color-gray-50);
+    color: var(--color-text);
+    font-size: var(--font-m);
+  }
 }
